@@ -1,0 +1,48 @@
+<mat-tab-group (selectedIndexChange)="tabChange($event)">
+	<mat-tab [label]="'Generation 1: ' + pokeGen[0].length + ' cards'">
+		<ng-template matTabContent>
+			<mat-card class="pokemonList">
+				<mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+					<mat-grid-tile
+						*ngFor="let poke of pokeGen[0]"
+						[routerLink]="'/description/' + poke.id"
+					>
+						<mat-grid-tile-footer>
+							{{ poke.name }}
+						</mat-grid-tile-footer>
+						<img
+							mat-card-image
+							[src]="poke.sprites.front_default"
+							alt="Pokemon"
+						/>
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card>
+		</ng-template>
+	</mat-tab>
+
+	<mat-tab
+		[label]="'Generation ' + (i + 1) + ': ' + pokeGen[i].length + ' cards'"
+		*ngFor="let i of [1, 2, 3, 4, 5, 6]"
+	>
+		<div *ngIf="condInd == i">
+			<mat-card class="pokemonList">
+				<mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+					<mat-grid-tile
+						*ngFor="let poke of pokeGen[i]"
+						[routerLink]="'/description/' + poke.id"
+					>
+						<mat-grid-tile-footer>
+							{{ poke.name }}
+						</mat-grid-tile-footer>
+						<img
+							mat-card-image
+							[src]="poke.sprites.front_default"
+							alt="Pokemon"
+						/>
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card>
+		</div>
+	</mat-tab>
+</mat-tab-group>

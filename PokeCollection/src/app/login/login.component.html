@@ -1,0 +1,41 @@
+<app-navigation></app-navigation>
+<form #form="ngForm">
+	<mat-card>
+		<mat-form-field appearance="fill">
+			<input
+				matInput
+				type="email"
+				[(ngModel)]="email"
+				placeholder="email address"
+				name="email"
+			/>
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<input
+				matInput
+				type="password"
+				[(ngModel)]="password"
+				placeholder="password"
+				name="password"
+			/>
+		</mat-form-field>
+	</mat-card>
+	<div id="login-button">
+		<button
+			mat-flat-button
+			color="primary"
+			(click)="login()"
+			[disabled]="form.invalid"
+		>
+			Submit
+		</button>
+		<button
+			mat-flat-button
+			color="primary"
+			(click)="signUp()"
+			[disabled]="form.invalid"
+		>
+			Sign up
+		</button>
+	</div>
+</form>

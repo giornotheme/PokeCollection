@@ -1,0 +1,119 @@
+<app-navigation></app-navigation>
+<mat-card class="cardPokemon">
+	<div *ngIf="pokemon !== undefined">
+		<mat-card-title *ngIf="pokemon !== undefined" class="namePoke">
+			{{ pokemon.name }}</mat-card-title
+		>
+
+		<!-- front image of the pokemon -->
+		<img
+			mat-card-image
+			*ngIf="pokemon !== undefined"
+			[src]="pokemon.sprites.front_default"
+			alt="Pokemon"
+		/>
+
+		<!-- display the type of the pokemon -->
+		<mat-card-subtitle> <b>Type :</b> </mat-card-subtitle>
+		<mat-list class="list-horizontal">
+			<mat-list-item *ngFor="let typePoke of pokemon.types">
+				<mat-card-content class="itemType">
+					{{ typePoke.type.name }}
+				</mat-card-content>
+			</mat-list-item>
+		</mat-list>
+
+		<!-- height and weight of the actual pokemon -->
+		<div>
+			<mat-card-subtitle> <b>Height :</b> </mat-card-subtitle>
+			<mat-card-content> {{ pokemon.height }} </mat-card-content>
+			<mat-card-subtitle> <b>Weight :</b> </mat-card-subtitle>
+			<mat-card-content> {{ pokemon.weight }} </mat-card-content>
+		</div>
+
+		<!-- display the generation of the poke thanks to the  poke id -->
+		<mat-card-subtitle> <b>Generation :</b> </mat-card-subtitle>
+		<mat-card-content *ngIf="pokemon.id <= GENE1"> Johto </mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE1 && pokemon.id <= GENE2">
+			Kanto
+		</mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE2 && pokemon.id <= GENE3">
+			Hoenn
+		</mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE3 && pokemon.id <= GENE4">
+			Sinnoh
+		</mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE4 && pokemon.id <= GENE5">
+			Unova
+		</mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE5 && pokemon.id <= GENE6">
+			Kalos
+		</mat-card-content>
+		<mat-card-content *ngIf="pokemon.id > GENE6"> Alola </mat-card-content>
+
+		<!-- display all the moves of the pokemon -->
+		<mat-card-subtitle> <b>Moves :</b> </mat-card-subtitle>
+		<mat-card-content>
+			<mat-expansion-panel hideToggle>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Move of the {{ pokemon.name }} pokemon
+					</mat-panel-title>
+					<mat-panel-description>
+						Click to see the moves
+					</mat-panel-description>
+				</mat-expansion-panel-header>
+				<mat-list>
+					<mat-list-item *ngFor="let movePoke of pokemon.moves">
+						<mat-card-content>
+							{{ movePoke.move.name }}
+						</mat-card-content>
+					</mat-list-item>
+				</mat-list>
+			</mat-expansion-panel>
+		</mat-card-content>
+
+		<!-- mat table of statistics with the dataSource -->
+		<mat-card-subtitle> <b>Stats :</b> </mat-card-subtitle>
+		<table mat-table [dataSource]="dataSource">
+			<ng-container matColumnDef="hp">
+				<th mat-header-cell *matHeaderCellDef>hp</th>
+				<td mat-cell *matCellDef="let element">{{ element.hp }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="attack">
+				<th mat-header-cell *matHeaderCellDef>Attack</th>
+				<td mat-cell *matCellDef="let element">{{ element.attack }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="defense">
+				<th mat-header-cell *matHeaderCellDef>Defense</th>
+				<td mat-cell *matCellDef="let element">
+					{{ element.defense }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="special attack">
+				<th mat-header-cell *matHeaderCellDef>Special attack</th>
+				<td mat-cell *matCellDef="let element">
+					{{ element.specialAttack }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="special defense">
+				<th mat-header-cell *matHeaderCellDef>Special defense</th>
+				<td mat-cell *matCellDef="let element">
+					{{ element.specialDefense }}
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="speed">
+				<th mat-header-cell *matHeaderCellDef>Speed</th>
+				<td mat-cell *matCellDef="let element">{{ element.speed }}</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+		</table>
+	</div>
+</mat-card>

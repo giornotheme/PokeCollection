@@ -1,0 +1,14 @@
+mat-toolbar {
+	padding-bottom: 0px;
+	bottom: 0;
+	width: 100%;
+}
+
+.textFooter {
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+footer {
+	bottom: 0em;
+}

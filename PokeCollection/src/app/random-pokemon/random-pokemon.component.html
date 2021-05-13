@@ -1,0 +1,33 @@
+<app-navigation></app-navigation>
+
+<mat-card>
+	<mat-card-content *ngIf="compareDate()">
+		<mat-card-title> Select a new card !!!</mat-card-title>
+	</mat-card-content>
+	<mat-card-content *ngIf="!compareDate() && actualPoke === undefined">
+		<mat-card-title> You already take your daily card :'( </mat-card-title>
+		<mat-card-subtitle>
+			Come back tomorow for new adventures!</mat-card-subtitle
+		>
+	</mat-card-content>
+	<mat-card-content
+		*ngIf="actualPoke !== undefined"
+		[routerLink]="'/description/' + actualPoke.id"
+	>
+		<mat-card-title class="namePoke"> {{ actualPoke.name }}</mat-card-title>
+		<img
+			mat-card-image
+			[src]="actualPoke.sprites.front_default"
+			alt="Pokemon"
+		/>
+	</mat-card-content>
+	<mat-card-content *ngIf="actualPoke === undefined">
+		<button
+			mat-raised-button
+			[disabled]="!compareDate()"
+			(click)="sendPokemon(getRandomId())"
+		>
+			Send
+		</button>
+	</mat-card-content>
+</mat-card>

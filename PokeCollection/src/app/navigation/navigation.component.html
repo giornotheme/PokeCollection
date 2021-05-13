@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+	<a routerLink="/">Home</a>
+	<div class="toolbar-spacer"></div>
+	<a routerLink="/all-collection" *ngIf="userID">Collection</a>
+	<a routerLink="/randomPokemon" *ngIf="userID">Random</a>
+	<a routerLink="/logout" *ngIf="userID" (click)="logout()">Logout</a>
+	<a routerLink="/login" *ngIf="!userID">Login</a>
+</mat-toolbar>

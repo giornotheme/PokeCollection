@@ -1,0 +1,11 @@
+form {
+	width: 30em;
+	margin: 5em auto;
+}
+mat-form-field {
+	width: 100%;
+}
+#login-button button {
+	width: 100%;
+	margin-top: 1em;
+}
