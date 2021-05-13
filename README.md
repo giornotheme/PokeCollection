@@ -2,7 +2,7 @@
 The PokeCollection is a collection game of pokemon card, in which we can daily click to collect a new card.
 
 
-# Instalation
+# Installation
 ```bash
 git clone https://github.com/Teeflam/PokeCollection.git
 cd pokecollection
